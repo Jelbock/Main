@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Main {
+class CoffeeMachineInput {
     int water = 1200;
     int milk = 540;
     int coffeeBeans = 120;
@@ -8,27 +8,24 @@ class Main {
     int money = 550;
 
     public static void main(String[] args) {
-        Main main = new Main();
-        main.print();
+        CoffeeMachineInput coffeeMachine = new CoffeeMachineInput();
+        coffeeMachine.print();
         Scanner in = new Scanner(System.in);
-        System.out.println();
-        System.out.print("Write action (buy, fill, take): ");
+        System.out.print("\n" + "Write action (buy, fill, take): ");
         if (in.hasNextLine()){
             String action = in.nextLine();
             if ("buy".equals(action)){
-                main.makeCoffee();
+                coffeeMachine.makeCoffee();
             }else if ("fill".equals(action)){
-                main.addIngredients();
+                coffeeMachine.addIngredients();
             }else if ("take".equals(action)){
-                main.takeMoney();
-            }/*else {
-                //action = in.nextLine();
-            }*/
+                coffeeMachine.takeMoney();
+            }
         }
-        main.print();
+        coffeeMachine.print();
     }
     public void makeCoffee() {
-        System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: 3");
+        System.out.print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino: ");
         Scanner in = new Scanner(System.in);
         if (in.hasNextInt()){
             int number = in.nextInt();
@@ -56,25 +53,27 @@ class Main {
     public void addIngredients(){
 
         Scanner in = new Scanner(System.in);
-        System.out.print("Write how many ml of water do you want to add: ");
-        int waterInput = in.nextInt();
-        System.out.print("Write how many ml of milk do you want to add: ");
-        int milkInput = in.nextInt();
-        System.out.print("Write how many grams of coffee beans do you want to add: ");
-        int coffeeBeansInput = in.nextInt();
-        System.out.print("Write how many disposable cups of coffee do you want to add: ");
-        int disposableCupsInput = in.nextInt();
-        water+=waterInput;
-        milk+=milkInput;
-        coffeeBeans+=coffeeBeansInput;
-        disposableCups+=disposableCupsInput;
-        System.out.println();
-
+        try {
+            System.out.print("Write how many ml of water do you want to add: ");
+            int waterInput = in.nextInt();
+            System.out.print("Write how many ml of milk do you want to add: ");
+            int milkInput = in.nextInt();
+            System.out.print("Write how many grams of coffee beans do you want to add: ");
+            int coffeeBeansInput = in.nextInt();
+            System.out.print("Write how many disposable cups of coffee do you want to add: ");
+            int disposableCupsInput = in.nextInt();
+            water += waterInput;
+            milk += milkInput;
+            coffeeBeans += coffeeBeansInput;
+            disposableCups += disposableCupsInput;
+            System.out.println();
+        }catch (InputMismatchException e){
+            System.out.println("\n" + "Only numbers!!!" + "\n");
+        }
     }
     public void takeMoney(){
-        System.out.println("I gave you $" + money);
+        System.out.println("I gave you $" + money + "\n");
         money = 0;
-        System.out.println();
     }
 
     public void print(){
